@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ObservationCollections.Views.LogIn"
+             Title="LogIn">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+
+            <Label Text="Sign In To Muscle Up"
+               Style="{StaticResource CenteredTitleLabel}"
+               Margin="0,20,0,20" />
+
+            <Label Text="Enter your Email:" />
+
+            <Entry Placeholder="Email"
+               Style="{StaticResource AppEntry}"
+               Text="{Binding Email, Mode=TwoWay}" />
+
+            <Label Text="{Binding EmailError}"
+               Style="{StaticResource ErrorLabel}" />
+
+            <Label Text="Enter your password:" />
+
+            <Entry Placeholder="Password"
+               Style="{StaticResource AppEntry}"
+               IsPassword="True"
+               Text="{Binding Password, Mode=TwoWay}" />
+
+            <Label Text="{Binding PasswordError}"
+               Style="{StaticResource ErrorLabel}" />
+
+            <Label Text="Don't have an account? Register"
+               Style="{StaticResource LinkLabel}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                    Command="{Binding RegisterCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button Text="Sign In"
+                Style="{StaticResource AppButton}"
+                Command="{Binding SignInCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

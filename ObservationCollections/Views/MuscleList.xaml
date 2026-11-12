@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ObservationCollections.Views.MuscleList"
+             Title="MuscleList">
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                         Spacing="16">
+
+            <!-- Header -->
+
+            <VerticalStackLayout Spacing="5">
+
+                <Label Text="Muscle Library"
+                   Style="{StaticResource TitleLabel}"
+                   TextColor="#202124" />
+
+                <Label Text="View and manage your muscles"
+                   Style="{StaticResource SubtitleLabel}" />
+
+            </VerticalStackLayout>
+
+
+            <!-- Muscle List -->
+
+            <Border Style="{StaticResource CardBorder}"
+                Padding="12">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="Your Muscles"
+                       Style="{StaticResource SectionTitleLabel}" />
+
+                    <CollectionView ItemsSource="{Binding Muscles}"
+                                SelectedItem="{Binding SelectedMuscle, Mode=TwoWay}"
+                                SelectionMode="Single"
+                                HeightRequest="250">
+
+                        <CollectionView.EmptyView>
+                            <Label Text="No muscles available."
+                               Padding="10"
+                               Style="{StaticResource SubtitleLabel}" />
+                        </CollectionView.EmptyView>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+
+                                <Border Style="{StaticResource MuscleItemBorder}"
+                                    Padding="12"
+                                    Margin="0,4">
+
+                                    <VerticalStackLayout Spacing="4">
+
+                                        <Label Text="{Binding Name}"
+                                           Style="{StaticResource MuscleTitleLabel}" />
+
+                                        <Label Text="{Binding BodyPart}"
+                                           Style="{StaticResource SubtitleLabel}" />
+
+                                    </VerticalStackLayout>
+
+                                </Border>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+
+            <!-- Selected Muscle -->
+
+            <Border Style="{StaticResource CardBorder}"
+                Padding="15">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Muscle Details"
+                       Style="{StaticResource SectionTitleLabel}" />
+
+                    <Label Text="Muscle Name"
+                       Style="{StaticResource MuscleBodyLabel}" />
+
+                    <Entry Text="{Binding SelectedMuscle.Name, Mode=TwoWay}"
+                       Placeholder="Enter muscle name"
+                       Style="{StaticResource MuscleEntry}" />
+
+                    <Label Text="Body Part"
+                       Style="{StaticResource MuscleBodyLabel}" />
+
+                    <Picker Title="Select Body Part"
+                        ItemsSource="{Binding BodyParts}"
+                        SelectedItem="{Binding SelectedMuscle.BodyPart, Mode=TwoWay}" />
+
+                    <Label Text="Changes apply directly to the selected muscle."
+                       Style="{StaticResource SmallLabel}" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Actions -->
+
+            <VerticalStackLayout Spacing="10">
+
+                <Button Text="Add Muscle"
+                    Style="{StaticResource DarkButton}"
+                    Command="{Binding AddMuscleCommand}" />
+
+                <Button Text="Delete Selected Muscle"
+                    Style="{StaticResource DeleteButton}"
+                    Command="{Binding DeleteMuscleCommand}" />
+
+                <Button Text="Clear Selection"
+                    Style="{StaticResource ClearButton}"
+                    Command="{Binding ClearSelectionCommand}" />
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
