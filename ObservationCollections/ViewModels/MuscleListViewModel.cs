@@ -1,11 +1,16 @@
-﻿using System.Collections.ObjectModel;
+﻿
+using System.Collections.ObjectModel;
 using ObservationCollections.Models;
+using ObservationCollections.Services;
 
 namespace ObservationCollections.ViewModels
 {
     public class MuscleListViewModel : ViewModelBase
     {
         #region Fields
+
+        private ObservableCollection<Muscle> muscles =
+            new ObservableCollection<Muscle>();
 
         private Muscle? selectedMuscle;
 
@@ -15,7 +20,15 @@ namespace ObservationCollections.ViewModels
 
         #region Properties
 
-        public ObservableCollection<Muscle> Muscles { get; set; }
+        public ObservableCollection<Muscle> Muscles
+        {
+            get { return muscles; }
+            set
+            {
+                muscles = value;
+                OnPropertyChanged();
+            }
+        }
 
         public List<string> BodyParts { get; set; } =
             new List<string>
@@ -50,14 +63,16 @@ namespace ObservationCollections.ViewModels
         public Command ClearSelectionCommand { get; }
 
         #endregion
-
+        s
         #region Constructor
 
         public MuscleListViewModel(User user)
         {
             currentUser = user;
 
-            Muscles = currentUser.Muscles;
+            // Copy the user's List into an ObservableCollection.
+
+            Muscles = new ObservableCollection<Muscle>(currentUser.Muscles);
 
             AddMuscleCommand = new Command(AddMuscle);
             DeleteMuscleCommand = new Command(DeleteMuscle);
@@ -76,6 +91,12 @@ namespace ObservationCollections.ViewModels
                 BodyPart = "Arms"
             };
 
+            // Add the muscle to the DataRepository.
+
+            DataRepository.AddMuscle(currentUser, newMuscle);
+
+            // Add the muscle to the ObservableCollection.
+
             Muscles.Add(newMuscle);
 
             SelectedMuscle = newMuscle;
@@ -87,6 +108,12 @@ namespace ObservationCollections.ViewModels
             {
                 return;
             }
+
+            // Remove the muscle from the DataRepository.
+
+            DataRepository.RemoveMuscle(currentUser, SelectedMuscle);
+
+            // Remove the muscle from the ObservableCollection.
 
             Muscles.Remove(SelectedMuscle);
 

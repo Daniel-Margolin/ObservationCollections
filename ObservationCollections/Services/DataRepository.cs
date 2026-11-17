@@ -1,5 +1,4 @@
 ﻿using ObservationCollections.Models;
-using System.Collections.ObjectModel;
 
 namespace ObservationCollections.Services
 {
@@ -35,7 +34,7 @@ namespace ObservationCollections.Services
                 Email = "daniel@gmail.com",
                 DateBirth = "2008-05-12",
 
-                Muscles = new ObservableCollection<Muscle>
+                Muscles = new List<Muscle>
                 {
                     musclesList[0],
                     musclesList[1],
@@ -50,7 +49,7 @@ namespace ObservationCollections.Services
                 Email = "john@gmail.com",
                 DateBirth = "2007-08-20",
 
-                Muscles = new ObservableCollection<Muscle>
+                Muscles = new List<Muscle>
                 {
                     musclesList[3],
                     musclesList[4]
@@ -64,7 +63,7 @@ namespace ObservationCollections.Services
                 Email = "michael@gmail.com",
                 DateBirth = "2006-11-03",
 
-                Muscles = new ObservableCollection<Muscle>
+                Muscles = new List<Muscle>
                 {
                     musclesList[5]
                 }
@@ -94,6 +93,20 @@ namespace ObservationCollections.Services
         {
             return usersList.Any(u =>
                 u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+        }
+
+        // Add a muscle to a specific user's list.
+
+        public static void AddMuscle(User user, Muscle muscle)
+        {
+            user.Muscles.Add(muscle);
+        }
+
+        // Remove a muscle from a specific user's list.
+
+        public static void RemoveMuscle(User user, Muscle muscle)
+        {
+            user.Muscles.Remove(muscle);
         }
 
         #endregion

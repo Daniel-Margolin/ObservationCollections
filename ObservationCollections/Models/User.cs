@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿
+using System.Collections.Generic;
 
 namespace ObservationCollections.Models
 {
@@ -11,8 +12,7 @@ namespace ObservationCollections.Models
         public string Email { get; set; } = string.Empty;
         public string DateBirth { get; set; } = string.Empty;
 
-        public ObservableCollection<Muscle> Muscles { get; set; }
-    = new ObservableCollection<Muscle>();
+        public List<Muscle> Muscles { get; set; } = new List<Muscle>();
 
         #endregion
     }
