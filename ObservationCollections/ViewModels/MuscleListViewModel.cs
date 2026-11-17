@@ -1,5 +1,4 @@
-﻿
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using ObservationCollections.Models;
 using ObservationCollections.Services;
 
@@ -16,7 +15,7 @@ namespace ObservationCollections.ViewModels
 
         private User currentUser;
 
-        #endregion
+        #endregion  
 
         #region Properties
 
@@ -63,7 +62,7 @@ namespace ObservationCollections.ViewModels
         public Command ClearSelectionCommand { get; }
 
         #endregion
-        s
+        
         #region Constructor
 
         public MuscleListViewModel(User user)
