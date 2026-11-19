@@ -221,6 +221,7 @@ namespace ObservationCollections.ViewModels
             }
 
             // Create the new user.
+
             User newUser = new User
             {
                 UserName = username,
@@ -230,7 +231,8 @@ namespace ObservationCollections.ViewModels
             };
 
             // Save the user in the repository.
-            bool added = DataRepository.AddUser(newUser);
+
+            bool added = await DataRepository.AddUserAsync(newUser);
 
             if (!added)
             {
@@ -244,6 +246,7 @@ namespace ObservationCollections.ViewModels
                 "OK");
 
             // Return to the existing login page.
+
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 

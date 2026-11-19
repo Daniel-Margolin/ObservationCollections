@@ -15,7 +15,7 @@ namespace ObservationCollections.ViewModels
 
         private User currentUser;
 
-        #endregion  
+        #endregion
 
         #region Properties
 
@@ -62,7 +62,7 @@ namespace ObservationCollections.ViewModels
         public Command ClearSelectionCommand { get; }
 
         #endregion
-        
+
         #region Constructor
 
         public MuscleListViewModel(User user)
@@ -73,8 +73,8 @@ namespace ObservationCollections.ViewModels
 
             Muscles = new ObservableCollection<Muscle>(currentUser.Muscles);
 
-            AddMuscleCommand = new Command(AddMuscle);
-            DeleteMuscleCommand = new Command(DeleteMuscle);
+            AddMuscleCommand = new Command(async () => await AddMuscle());
+            DeleteMuscleCommand = new Command(async () => await DeleteMuscle());
             ClearSelectionCommand = new Command(ClearSelection);
         }
 
@@ -82,7 +82,7 @@ namespace ObservationCollections.ViewModels
 
         #region Methods
 
-        private void AddMuscle()
+        private async Task AddMuscle()
         {
             Muscle newMuscle = new Muscle
             {
@@ -92,7 +92,7 @@ namespace ObservationCollections.ViewModels
 
             // Add the muscle to the DataRepository.
 
-            DataRepository.AddMuscle(currentUser, newMuscle);
+            await DataRepository.AddMuscleAsync(currentUser, newMuscle);
 
             // Add the muscle to the ObservableCollection.
 
@@ -101,22 +101,30 @@ namespace ObservationCollections.ViewModels
             SelectedMuscle = newMuscle;
         }
 
-        private void DeleteMuscle()
+        private async Task DeleteMuscle()
         {
             if (SelectedMuscle == null)
             {
                 return;
             }
 
+            // Save the selected muscle before waiting.
+
+            Muscle muscleToDelete = SelectedMuscle;
+
             // Remove the muscle from the DataRepository.
 
-            DataRepository.RemoveMuscle(currentUser, SelectedMuscle);
+            bool removed = await DataRepository.RemoveMuscleAsync(
+                currentUser, muscleToDelete);
 
-            // Remove the muscle from the ObservableCollection.
+            if (removed)
+            {
+                // Remove the muscle from the ObservableCollection.
 
-            Muscles.Remove(SelectedMuscle);
+                Muscles.Remove(muscleToDelete);
 
-            SelectedMuscle = null;
+                SelectedMuscle = null;
+            }
         }
 
         private void ClearSelection()

@@ -103,7 +103,8 @@ namespace ObservationCollections.ViewModels
             }
 
             // Find the user in the repository.
-            var user = DataRepository.FindUser(Email, Password);
+
+            var user = await DataRepository.FindUserAsync(Email, Password);
 
             if (user == null)
             {
@@ -112,6 +113,7 @@ namespace ObservationCollections.ViewModels
             }
 
             // Navigate to the MuscleList page.
+
             await Application.Current.MainPage.Navigation.PushAsync(
                 new ObservationCollections.Views.MuscleList(user));
         }

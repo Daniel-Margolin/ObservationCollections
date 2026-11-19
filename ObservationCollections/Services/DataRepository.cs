@@ -16,7 +16,7 @@ namespace ObservationCollections.Services
 
         public static void FillFakeData()
         {
-            // Create the central muscle list
+            // Create the central muscle list.
 
             musclesList.Add(new Muscle { Name = "Biceps", BodyPart = "Arms" });
             musclesList.Add(new Muscle { Name = "Triceps", BodyPart = "Arms" });
@@ -25,7 +25,7 @@ namespace ObservationCollections.Services
             musclesList.Add(new Muscle { Name = "Hamstrings", BodyPart = "Legs" });
             musclesList.Add(new Muscle { Name = "Latissimus", BodyPart = "Back" });
 
-            // Create users and assign their muscles
+            // Create users and assign their muscles.
 
             usersList.Add(new User
             {
@@ -70,8 +70,10 @@ namespace ObservationCollections.Services
             });
         }
 
-        public static bool AddUser(User user)
+        public static async Task<bool> AddUserAsync(User user)
         {
+            await Task.Delay(100);
+
             if (usersList.Any(u =>
                 u.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase)))
             {
@@ -82,31 +84,39 @@ namespace ObservationCollections.Services
             return true;
         }
 
-        public static User FindUser(string email, string password)
+        public static async Task<User?> FindUserAsync(string email, string password)
         {
+            await Task.Delay(100);
+
             return usersList.FirstOrDefault(u =>
                 u.Email.Equals(email, StringComparison.OrdinalIgnoreCase)
                 && u.Password == password);
         }
 
-        public static bool EmailExists(string email)
+        public static async Task<bool> EmailExistsAsync(string email)
         {
+            await Task.Delay(100);
+
             return usersList.Any(u =>
                 u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
         }
 
         // Add a muscle to a specific user's list.
 
-        public static void AddMuscle(User user, Muscle muscle)
+        public static async Task AddMuscleAsync(User user, Muscle muscle)
         {
+            await Task.Delay(100);
+
             user.Muscles.Add(muscle);
         }
 
         // Remove a muscle from a specific user's list.
 
-        public static void RemoveMuscle(User user, Muscle muscle)
+        public static async Task<bool> RemoveMuscleAsync(User user, Muscle muscle)
         {
-            user.Muscles.Remove(muscle);
+            await Task.Delay(100);
+
+            return user.Muscles.Remove(muscle);
         }
 
         #endregion
