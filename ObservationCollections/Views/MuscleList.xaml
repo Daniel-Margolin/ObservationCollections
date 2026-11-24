@@ -3,20 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ObservationCollections.Views.MuscleList"
              Title="MuscleList">
+
     <ScrollView>
         <VerticalStackLayout Padding="20"
-                         Spacing="16">
+                             Spacing="16">
 
             <!-- Header -->
 
             <VerticalStackLayout Spacing="5">
 
                 <Label Text="Muscle Library"
-                   Style="{StaticResource TitleLabel}"
-                   TextColor="#202124" />
+                       Style="{StaticResource TitleLabel}"
+                       TextColor="#202124" />
 
                 <Label Text="View and manage your muscles"
-                   Style="{StaticResource SubtitleLabel}" />
+                       Style="{StaticResource SubtitleLabel}" />
 
             </VerticalStackLayout>
 
@@ -24,38 +25,66 @@
             <!-- Muscle List -->
 
             <Border Style="{StaticResource CardBorder}"
-                Padding="12">
+                    Padding="12">
 
                 <VerticalStackLayout Spacing="10">
 
                     <Label Text="Your Muscles"
-                       Style="{StaticResource SectionTitleLabel}" />
+                           Style="{StaticResource SectionTitleLabel}" />
 
                     <CollectionView ItemsSource="{Binding Muscles}"
-                                SelectedItem="{Binding SelectedMuscle, Mode=TwoWay}"
-                                SelectionMode="Single"
-                                HeightRequest="250">
+                                    SelectedItem="{Binding SelectedMuscle, Mode=TwoWay}"
+                                    SelectionMode="Single"
+                                    HeightRequest="250">
 
                         <CollectionView.EmptyView>
                             <Label Text="No muscles available."
-                               Padding="10"
-                               Style="{StaticResource SubtitleLabel}" />
+                                   Padding="10"
+                                   Style="{StaticResource SubtitleLabel}" />
                         </CollectionView.EmptyView>
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
 
                                 <Border Style="{StaticResource MuscleItemBorder}"
-                                    Padding="12"
-                                    Margin="0,4">
+                                        Padding="12"
+                                        Margin="0,4">
+
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+
+                                            <VisualState Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor"
+                                                            Value="#F3F5F8" />
+                                                    <Setter Property="Stroke"
+                                                            Value="#DDE3EA" />
+                                                    <Setter Property="StrokeThickness"
+                                                            Value="1" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor"
+                                                            Value="#EAF1FA" />
+                                                    <Setter Property="Stroke"
+                                                            Value="#365F91" />
+                                                    <Setter Property="StrokeThickness"
+                                                            Value="2" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
 
                                     <VerticalStackLayout Spacing="4">
 
                                         <Label Text="{Binding Name}"
-                                           Style="{StaticResource MuscleTitleLabel}" />
+                                               Style="{StaticResource MuscleTitleLabel}" />
 
                                         <Label Text="{Binding BodyPart}"
-                                           Style="{StaticResource SubtitleLabel}" />
+                                               Style="{StaticResource SubtitleLabel}" />
 
                                     </VerticalStackLayout>
 
@@ -74,49 +103,50 @@
             <!-- Selected Muscle -->
 
             <Border Style="{StaticResource CardBorder}"
-                Padding="15">
+                    Padding="15">
 
                 <VerticalStackLayout Spacing="12">
 
                     <Label Text="Muscle Details"
-                       Style="{StaticResource SectionTitleLabel}" />
+                           Style="{StaticResource SectionTitleLabel}" />
 
                     <Label Text="Muscle Name"
-                       Style="{StaticResource MuscleBodyLabel}" />
+                           Style="{StaticResource MuscleBodyLabel}" />
 
                     <Entry Text="{Binding SelectedMuscle.Name, Mode=TwoWay}"
-                       Placeholder="Enter muscle name"
-                       Style="{StaticResource MuscleEntry}" />
+                           Placeholder="Enter muscle name"
+                           Style="{StaticResource MuscleEntry}" />
 
                     <Label Text="Body Part"
-                       Style="{StaticResource MuscleBodyLabel}" />
+                           Style="{StaticResource MuscleBodyLabel}" />
 
                     <Picker Title="Select Body Part"
-                        ItemsSource="{Binding BodyParts}"
-                        SelectedItem="{Binding SelectedMuscle.BodyPart, Mode=TwoWay}" />
+                            ItemsSource="{Binding BodyParts}"
+                            SelectedItem="{Binding SelectedMuscle.BodyPart, Mode=TwoWay}" />
 
                     <Label Text="Changes apply directly to the selected muscle."
-                       Style="{StaticResource SmallLabel}" />
+                           Style="{StaticResource SmallLabel}" />
 
                 </VerticalStackLayout>
 
             </Border>
+
 
             <!-- Actions -->
 
             <VerticalStackLayout Spacing="10">
 
                 <Button Text="Add Muscle"
-                    Style="{StaticResource DarkButton}"
-                    Command="{Binding AddMuscleCommand}" />
+                        Style="{StaticResource DarkButton}"
+                        Command="{Binding AddMuscleCommand}" />
 
                 <Button Text="Delete Selected Muscle"
-                    Style="{StaticResource DeleteButton}"
-                    Command="{Binding DeleteMuscleCommand}" />
+                        Style="{StaticResource DeleteButton}"
+                        Command="{Binding DeleteMuscleCommand}" />
 
                 <Button Text="Clear Selection"
-                    Style="{StaticResource ClearButton}"
-                    Command="{Binding ClearSelectionCommand}" />
+                        Style="{StaticResource ClearButton}"
+                        Command="{Binding ClearSelectionCommand}" />
 
             </VerticalStackLayout>
 

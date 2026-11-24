@@ -195,7 +195,7 @@
     <Style TargetType="Picker">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
         <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BackgroundColor" Value="#F3F5F8" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14" />
         <Setter Property="MinimumHeightRequest" Value="44"/>
@@ -439,7 +439,8 @@
 
     <!-- Custom Application Styles -->
 
-    <!-- Titles -->
+    <!-- ==================== LOGIN / REGISTER STYLES ==================== -->
+
     <Style TargetType="Label" x:Key="CenteredTitleLabel">
         <Setter Property="FontSize" Value="25" />
         <Setter Property="FontAttributes" Value="Bold" />
@@ -474,7 +475,7 @@
     </Style>
 
     <Style TargetType="Entry" x:Key="MuscleEntry"
-        BasedOn="{StaticResource AppEntry}">
+           BasedOn="{StaticResource AppEntry}">
         <Setter Property="BackgroundColor" Value="#F3F5F8" />
         <Setter Property="TextColor" Value="#202124" />
     </Style>
@@ -494,74 +495,87 @@
         <Setter Property="HorizontalTextAlignment" Value="Start" />
     </Style>
 
-    <!-- Borders -->
+
+    <!-- ==================== MUSCLE LIBRARY STYLES ==================== -->
+
+    <!-- Main Cards -->
     <Style TargetType="Border" x:Key="CardBorder">
         <Setter Property="BackgroundColor" Value="White" />
         <Setter Property="Stroke" Value="#E1E5EB" />
         <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="Padding" Value="15" />
+    </Style>
+
+    <!-- Individual Muscle Items -->
+    <Style TargetType="Border" x:Key="MuscleItemBorder">
+        <Setter Property="BackgroundColor" Value="#F3F5F8" />
+        <Setter Property="Stroke" Value="#DDE3EA" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
         <Setter Property="Padding" Value="12" />
     </Style>
 
-    <Style TargetType="Border" x:Key="MuscleItemBorder">
-        <Setter Property="BackgroundColor" Value="White" />
-        <Setter Property="Stroke" Value="#E1E5EB" />
-        <Setter Property="StrokeThickness" Value="1" />
-        <Setter Property="Padding" Value="10" />
-    </Style>
-
-
-    <!-- Muscle List Styles -->
-
+    <!-- Page Title -->
     <Style TargetType="Label" x:Key="TitleLabel">
         <Setter Property="FontSize" Value="26" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="TextColor" Value="#202B3C" />
     </Style>
 
+    <!-- Subtitle -->
     <Style TargetType="Label" x:Key="SubtitleLabel">
         <Setter Property="FontSize" Value="13" />
         <Setter Property="TextColor" Value="#7B8491" />
     </Style>
 
+    <!-- Section Titles -->
     <Style TargetType="Label" x:Key="SectionTitleLabel">
         <Setter Property="FontSize" Value="18" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="TextColor" Value="#202B3C" />
     </Style>
 
+    <!-- Muscle Names -->
     <Style TargetType="Label" x:Key="MuscleTitleLabel">
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="TextColor" Value="#303B4A" />
+        <Setter Property="TextColor" Value="#202B3C" />
     </Style>
 
+    <!-- Field Labels -->
     <Style TargetType="Label" x:Key="MuscleBodyLabel">
         <Setter Property="FontSize" Value="13" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="TextColor" Value="#4B5563" />
     </Style>
 
+    <!-- Small Information Text -->
     <Style TargetType="Label" x:Key="SmallLabel">
         <Setter Property="FontSize" Value="11" />
         <Setter Property="TextColor" Value="#8A929E" />
     </Style>
 
-    <!-- Muscle List Buttons -->
 
+    <!-- ==================== MUSCLE LIBRARY BUTTONS ==================== -->
+
+    <!-- Add Muscle -->
     <Style TargetType="Button" x:Key="DarkButton"
-        BasedOn="{StaticResource AppButton}">
+           BasedOn="{StaticResource AppButton}">
         <Setter Property="BackgroundColor" Value="#365F91" />
         <Setter Property="TextColor" Value="White" />
     </Style>
 
+    <!-- Delete Muscle -->
     <Style TargetType="Button" x:Key="DeleteButton"
-        BasedOn="{StaticResource AppButton}">
+           BasedOn="{StaticResource AppButton}">
         <Setter Property="BackgroundColor" Value="#FCEAEA" />
         <Setter Property="TextColor" Value="#C43D3D" />
     </Style>
 
+    <!-- Clear Selection -->
     <Style TargetType="Button" x:Key="ClearButton"
-        BasedOn="{StaticResource AppButton}">
+           BasedOn="{StaticResource AppButton}">
         <Setter Property="BackgroundColor" Value="#EDF0F4" />
         <Setter Property="TextColor" Value="#465365" />
     </Style>
